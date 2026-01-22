@@ -6,8 +6,11 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     float movementX;
     float movementY;
+    float movementR;
 
     [SerializeField] float speed = 5.0f;
+    [SerializeField] float jumpForce = 5.0f;
+    [SerializeField] float torqueForce = 50f;
     Rigidbody2D rb;
     bool isGrounded;
     int score = 0;
@@ -26,18 +29,33 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(movementX*speed, rb.linearVelocity.y);
         if (isGrounded && movementY > 0)
         {
-            rb.AddForce(new Vector2(0, 100));
+            // rb.AddForce(new Vector2(0, 100));
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
+        rb.AddTorque(-movementR * torqueForce);
     }
 
     private void OnCollisionEnter2D(Collision2D collision){
         if (collision.gameObject.CompareTag("Ground"))
         {
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                // If the surface normal points up (y > 0.5), it's a floor
+                if (contact.normal.y > 0.5f)
+                {
+                    isGrounded = true;
+                    break;
+                }
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Sticky Ground"))
+        {
             isGrounded = true;
         }
     }
     private void OnCollisionExit2D(Collision2D collision){
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Sticky Ground"))
         {
             isGrounded = false;
         }
@@ -46,7 +64,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Collectible"))
         {
             score++;
-            collision.gameObject.SetActive(false);
+            Destroy(collision.gameObject);
             Debug.Log("Score: " + score);
         }
     }
@@ -57,6 +75,11 @@ public class PlayerController : MonoBehaviour
         movementY = v.y;
         Debug.Log("Movement X = " + movementX);
         Debug.Log("Movement Y = " + movementY);
+    }
+
+    void OnRotate(InputValue value) {
+        movementR = value.Get<float>();
+        Debug.Log("Movement R = " + movementR);
     }
 }
 

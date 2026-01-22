@@ -23,6 +23,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Rotate",
+                    "type": "Value",
+                    "id": "9029588d-0b54-4646-b84f-78d9eefa04af",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -39,7 +48,7 @@
                 },
                 {
                     "name": "2D Vector",
-                    "id": "18a84018-d539-403b-98bb-e1f5cb710882",
+                    "id": "21475b48-20b1-4a1d-81b9-5826eb24f454",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -50,7 +59,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "a2ce0147-b617-4e6c-ac64-f7c8913bbafa",
+                    "id": "619630d3-9efc-4fb5-9140-0c0fa631640a",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -61,7 +70,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "ffb57660-a93c-4fac-8355-7b9a8598107b",
+                    "id": "bc7c8aa6-6c53-472f-9f4d-2d1e3e073e79",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -72,7 +81,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "2aa73c17-8c2c-467a-9fd4-b72359946378",
+                    "id": "55519777-26d1-4199-bfe2-ea93ccb593d4",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -83,12 +92,45 @@
                 },
                 {
                     "name": "right",
-                    "id": "3e777a52-c623-4c9b-9fc0-b54df833b482",
+                    "id": "f10a7e35-a6dc-4726-b27f-8f4462117cb2",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "0c13fd2f-5dbe-414e-a73a-29c95f68a7e6",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "3a0796aa-80a9-4bee-bd88-49a98946877d",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "38569f86-9d44-49a7-8328-97b4722814cf",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
